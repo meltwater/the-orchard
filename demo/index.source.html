@@ -8,9 +8,16 @@
 <!--THE_ORCHARD-->
 
         <script type="module">
+            const { html, render } = globalThis.uhtml;
+
             const outputElement = document.querySelector('#output');
-            const currentTime = moment().format();
-            // TODO use lit-html to render things
+
+            setInterval(() => {
+                const currentTime = moment().format('HH:mm:ss');
+                render(outputElement, html`
+                    The time is: ${currentTime}
+                `);
+            }, 500);
         </script>
     </head>
 

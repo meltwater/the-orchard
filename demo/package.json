@@ -5,14 +5,14 @@
   "main": "src/index.js",
   "types": "./types/index.d.ts",
   "scripts": {
-      "test": "node ../src/cli.entry.js -i index.source.html -o index.html"
+    "start": "node ../src/cli.entry.js -i index.source.html -o index.html && ws --spa index.html"
   },
   "devDependencies": {
-      "the-orchard": "file: ../"
+    "local-web-server": "5.2.1"
   },
   "dependencies": {
-    "lit-html": "2.2.5",
     "moment": "2.29.3",
-    "moment-timezone": "0.5.34"
+    "moment-timezone": "0.5.34",
+    "uhtml": "3.0.1"
   }
 }

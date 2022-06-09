@@ -17,7 +17,7 @@
     "postversion": "git push --follow-tags",
     "pretest": "check-dependencies && eslint src/",
     "preversion": "preversion --commit-docs",
-    "start": "node src/cli.entry",
+    "start": "cd demo && npm start",
     "test": "scripts/test",
     "test:live": "nodemon -x 'scripts/test' -w js,json --watch src/",
     "update": "npx npm-check -uE",
