@@ -38,7 +38,9 @@ This also has a performance benefit of not blocking the page load time while wai
 
 ## Registry Data
 
-TODO: Add information about setting up a private registry of dependencies
+This package relies on a folder being populated with file defining the dependencies you are concerned with in yaml format. (See Registry Data File Formats below).
+
+The default folder is `orchard`. If you would like an example of a recommended convention for this folder please check out the [demo folder](demo/orchard).
 
 ## Registry Data File Formats
 

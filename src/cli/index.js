@@ -22,7 +22,7 @@ sywac
     })
     .string('-d, --dependencyDirectory', {
         desc: 'Path to directory for all dependency yaml files',
-        defaultValue: 'registry'
+        defaultValue: 'orchard'
     })
     .string('-o, --outputFile', {
         desc: 'The file for output'

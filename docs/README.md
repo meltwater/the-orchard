@@ -11,33 +11,27 @@ These files have a specific format that is documented below.
 The yaml files for dependencies have the following format:
 
 ```yaml
-'@meltwater/mw-visualizations-backend-highcharts':
+'moment':
   # Ownership information
-  ownedBy: Legion
-  repo: https://github.com/meltwater/mw-visualizations-backend-highcharts
+  ownedBy: MomentJs
+  repo: https://github.com/moment/moment
   # Only one form of contact is required, but the more we have the easier it is to reach out if needed.
   contact:
-    email: all.legion@meltwater.com
-    slack: '#legion'
-    url: https://github.com/meltwater/mw-visualizations-backend-highcharts/issues
+    url: https://github.com/moment/moment
   # Technical Details
-  basePath: https://assets.meltwater.io/mw-visualizations/backend-highcharts/
+  basePath: https://unpkg.com/moment@
   # Multiple files can be included if needed
   es5:
-    - /mw-visualizations-backend-highcharts.es5.umd.js
-  esm:
-    - /mw-visualizations-backend-highcharts.umd.js
+    - /min/moment.min.js
   # This will allow for including things like a 'v' prefix if needed
-  versionPath: 'v{{version}}'
+  versionPath: '{{version}}'
   # If two version of this dependency cannot exist at the same time, then this must be set to true
   conflictsWithOtherMajorVersions: true
-  # List all other dependencies that are in the orchard, this guarantee proper ordering of script tags
-  orchardDependencies:
-    - '@meltwater/mw-visualizations-core'
   # If there is code required to initialize this dependency, then this must be set to true
   requiresInitialization: false
   # The default technical details (above) can be overridden by version, if necessary, to
   # maintain compatability with older releases still in use by applications.
+  # This is fabricated, and here purely as an example
   overrides:
     # Versions can be a range. Syntax documentation is available via the node-semver project at:
     # https://github.com/npm/node-semver/tree/f56505b1c08856a7e6139f6ee5d4580f5f2feed8#ranges
