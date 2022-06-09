@@ -11,8 +11,6 @@ steps:
   pull: default
   image: node:fermium
   commands:
-  - alias source=.
-  - source ./secrets
   - echo "//registry.npmjs.org/:_authToken=$${NPM_INSTALL_TOKEN}" > ~/.npmrc
   - npm ci
   environment:
@@ -23,8 +21,6 @@ steps:
   pull: default
   image: node:fermium
   commands:
-  - alias source=.
-  - source ./secrets
   - echo "//registry.npmjs.org/:_authToken=$${NPM_INSTALL_TOKEN}" > ~/.npmrc
   - npm test
   environment:
@@ -35,8 +31,6 @@ steps:
   pull: default
   image: node:fermium
   commands:
-  - alias source=.
-  - source ./secrets
   - echo "//registry.npmjs.org/:_authToken=$${NPM_INSTALL_TOKEN}" > ~/.npmrc
   - npm run types
   environment:
@@ -47,8 +41,6 @@ steps:
   pull: default
   image: node:fermium
   commands:
-  - alias source=.
-  - source ./secrets
   - echo "//registry.npmjs.org/:_authToken=$${NPM_DEPLOY_TOKEN}" > ~/.npmrc
   - echo "unsafe-perm=true" >> ~/.npmrc
   - npm publish
