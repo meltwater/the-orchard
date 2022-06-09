@@ -1,0 +1,18 @@
+{
+  "name": "the-orchard",
+  "private": "true",
+  "version": "0.0.0",
+  "main": "src/index.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "start": "node ../src/cli.entry.js -i index.source.html -o index.html && ws --spa index.html"
+  },
+  "devDependencies": {
+    "local-web-server": "5.2.1"
+  },
+  "dependencies": {
+    "moment": "2.29.3",
+    "moment-timezone": "0.5.34",
+    "uhtml": "3.0.1"
+  }
+}

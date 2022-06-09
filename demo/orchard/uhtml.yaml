@@ -1,0 +1,13 @@
+'uhtml':
+  # Ownership information
+  ownedBy: uhtml
+  repo: https://github.com/WebReflection/uhtml
+  contact:
+    url: https://github.com/WebReflection/uhtml/issues
+  # Technical Details
+  basePath: https://cdn.jsdelivr.net/npm/uhtml@
+  esm:
+    - /es.js
+  versionPath: '{{version}}'
+  conflictsWithOtherMajorVersions: true
+  requiresInitialization: false

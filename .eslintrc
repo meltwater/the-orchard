@@ -1,0 +1,3 @@
+{
+  "extends": "@meltwater/eslint-config-legion"
+}

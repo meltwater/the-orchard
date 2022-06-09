@@ -1,0 +1,2 @@
+clear
+jasmine --config=./jasmine.json

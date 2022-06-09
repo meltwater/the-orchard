@@ -1,0 +1,13 @@
+'moment':
+  # Ownership information
+  ownedBy: Moment.js
+  repo: https://github.com/moment/moment/
+  contact:
+    url: https://github.com/moment/moment/issues
+  # Technical Details
+  basePath: https://unpkg.com/moment@
+  es5:
+    - /min/moment.min.js
+  versionPath: '{{version}}'
+  conflictsWithOtherMajorVersions: true
+  requiresInitialization: false

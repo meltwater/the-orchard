@@ -1,0 +1,53 @@
+---
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: npm_install
+  pull: default
+  image: node:fermium
+  commands:
+  - echo "//registry.npmjs.org/:_authToken=$${NPM_INSTALL_TOKEN}" > ~/.npmrc
+  - npm ci
+  environment:
+    NPM_INSTALL_TOKEN:
+      from_secret: npm_install_token
+
+- name: test
+  pull: default
+  image: node:fermium
+  commands:
+  - echo "//registry.npmjs.org/:_authToken=$${NPM_INSTALL_TOKEN}" > ~/.npmrc
+  - npm test
+  environment:
+    NPM_INSTALL_TOKEN:
+      from_secret: npm_install_token
+
+- name: typings
+  pull: default
+  image: node:fermium
+  commands:
+  - echo "//registry.npmjs.org/:_authToken=$${NPM_INSTALL_TOKEN}" > ~/.npmrc
+  - npm run types
+  environment:
+    NPM_INSTALL_TOKEN:
+      from_secret: npm_install_token
+
+- name: release
+  pull: default
+  image: node:fermium
+  commands:
+  - echo "//registry.npmjs.org/:_authToken=$${NPM_DEPLOY_TOKEN}" > ~/.npmrc
+  - echo "unsafe-perm=true" >> ~/.npmrc
+  - npm publish
+  environment:
+    NPM_DEPLOY_TOKEN:
+      from_secret: npm_deploy_token
+  when:
+    event:
+    - tag
+...
