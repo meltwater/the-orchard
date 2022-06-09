@@ -5,8 +5,6 @@ import jsYaml from 'js-yaml';
 import { Logger } from '../../logger';
 import path from 'path';
 
-// TODO: Allow reading of dependencies from url
-
 export function getDependencyPackages(yamlDirectory) {
     ac.assertString(yamlDirectory, 'yamlDirectory');
     const files = fs.readdirSync(yamlDirectory);

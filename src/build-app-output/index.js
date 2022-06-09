@@ -56,7 +56,6 @@ export async function buildAppOutput(cliOptions) {
     const dependencies = readPackageDependencies(path.join(currentWorkingDirectory, cliOptions.pathToPackageJson));
     Logger.debug('dependencies', JSON.stringify(dependencies, null, 2));
 
-    // TODO figure this one out...
     const dependencyMap = await getDependencyPackages(cliOptions.dependencyDirectory);
     Logger.debug('dependencyMap', JSON.stringify(dependencyMap, null, 2));
 
