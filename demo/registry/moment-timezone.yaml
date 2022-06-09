@@ -1,0 +1,15 @@
+'moment-timezone':
+  # Ownership information
+  ownedBy: Moment.js
+  repo: https://github.com/moment/moment-timezone/
+  contact:
+    url: https://github.com/moment/moment-timezone/issues
+  # Technical Details
+  basePath: https://assets.meltwater.io/unpkg/moment-timezone@
+  es5:
+    - /builds/moment-timezone-with-data-2012-2022.min.js
+  versionPath: '{{version}}'
+  conflictsWithOtherMajorVersions: true
+  orchardDependencies:
+    - moment
+  requiresInitialization: false
