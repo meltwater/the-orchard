@@ -3,19 +3,19 @@ import { ExternalPackageEntry } from '../external-package-entry';
 import { Logger } from '../logger';
 
 /**
- * The details of an applet-supporting library for dependency resolution and contact information.
+ * The details of an supporting library for dependency resolution and contact information.
  *
  * @param {object} options - See below
  * @param {string} options.basePath - The base url for all asset paths
  * @param {boolean} options.conflictsWithOtherMajorVersions - This dependency does not implement version namespacing and could break if another instance, even of another major version, is present in the browser context
- * @param {Contact} options.contact - The contact information for the applet owner
+ * @param {Contact} options.contact - The contact information for the owner
  * @param {Array<string>} [options.es5] - The file paths needed for ES5 rendering. Either `es5`, `esm`, or both must be provided.
  * @param {Array<string>} [options.esm] - The file paths needed for ESM rendering. Either `es5`, `esm`, or both must be provided.
  * @param {Array<string>} [options.orchardDependencies] - Package names of other dependencies in the orchard that this directly depends upon
- * @param {string} options.ownedBy - The name of the team who owns the applet
- * @param {string} options.packageName - The name of the applet package published to NPM including the namespace. Eg. @meltwater/volume-by-input-column-applet
+ * @param {string} options.ownedBy - The name of the team or group who owns this package
+ * @param {string} options.packageName - The name of the package published to NPM including the namespace. Eg. @meltwater/volume-by-input-column
  * @param {boolean} options.requiresInitialization - This dependency requires needs to be initialized on the page before it can be used
- * @param {string} options.repo - The github repo for the applet
+ * @param {string} options.repo - The github repo for the package
  * @param {string} options.versionPath - The version portion of all asset paths
  */
 export class DependencyEntry {
@@ -62,9 +62,7 @@ export class DependencyEntry {
         }
 
         if (this.conflictsWithOtherMajorVersions) {
-            Logger.warn(`Contact Legion to work on FLAT-1719!
-
-Your applet dependency tree may be incorrectly failing for major version conflicts`);
+            Logger.warn('Your dependency tree may be incorrectly failing for major version conflicts. Please open an issue if you think you should not be receiving this message!');
         }
 
         return this.conflictsWithOtherMajorVersions;
