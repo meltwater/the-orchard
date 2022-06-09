@@ -10,7 +10,7 @@ Once installed the `orchard` cli tool becomes available. For a good description 
 
 ```orchard --help```
 
-## Updating your html file using the cli
+## Updating your HTML file using the CLI
 
 All of your dependencies can be inserted into your html file via the cli!
 
@@ -20,7 +20,7 @@ Putting the following text anywhere in a file will result in that string being r
 <!--THE_ORCHARD-->
 ```
 
-We recommend using a separate source file from your output file to allow for source control to ignore the generated file. The CLI command to accomplish this should look something like:
+We recommend using a separate source file from your output file to allow for source control to ignore the generated output file. The CLI command to accomplish this should look something like:
 
 ```bash
 orchard -i ./sourceFile.html -o ./outputFile.html
@@ -38,7 +38,7 @@ This also has a performance benefit of not blocking the page load time while wai
 
 ## Registry Data
 
-This package relies on a folder being populated with file defining the dependencies you are concerned with in yaml format. (See Registry Data File Formats below).
+This package relies on a folder being populated with file defining the dependencies you are concerned with in yaml format. See [Registry Data File Formats](#registry-data-file-formats).
 
 The default folder is `orchard`. If you would like an example of a recommended convention for this folder please check out the [demo folder](demo/orchard).
 
@@ -58,8 +58,8 @@ There are a handful of assumptions we had to make for The Orchard to be function
   - If this is a challenge, please reach out to with an issue to help us better understand your use case
 - **dependencies** are satisfied at run-time; **devDependencies** at build-time
   - Dependencies:
-    - We assume that all dependencies will mark THEIR dependencies packed into their distributed js file as `devDependencies` in the their package.json
-    - All dependencies expected to be provided by the hosting application should be marked as a `dependency` in the their package.json
+    - We assume that all dependencies will mark THEIR dependencies packed into their distributed js file as `devDependencies` in the their `package.json`
+    - All dependencies expected to be provided by the hosting application should be marked as a `dependency` in the their `package.json`
 - Multiple version includes
   - The Orchard will include one entry for each major version of a dependency
   - The exception to this rule is any dependency marked with `conflictsWithOtherMajorVersions` in The Orchard dependency list
