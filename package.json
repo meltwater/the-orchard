@@ -1,0 +1,59 @@
+{
+  "name": "the-orchard",
+  "version": "0.0.0",
+  "description": "A CLI tool to generate the markup for including dependencies",
+  "main": "src/index.js",
+  "bin": {
+    "orchard": "src/cli.entry.js"
+  },
+  "types": "./types/index.d.ts",
+  "mpkg": [
+    "dist/*"
+  ],
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "demo": "cd demo && npm start",
+    "docs": "npx documentation build ./src/index.js -f md > ./docs/API.md",
+    "postversion": "git push --follow-tags",
+    "pretest": "check-dependencies && eslint src/",
+    "preversion": "preversion --commit-docs",
+    "start": "node src/cli.entry",
+    "test": "scripts/test",
+    "test:live": "nodemon -x 'scripts/test' -w js,json --watch src/",
+    "update": "npx npm-check -uE",
+    "types": "npx typescript src/index.js --declaration --allowJs --emitDeclarationOnly --outDir types"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meltwater/the-orchard.git"
+  },
+  "keywords": [],
+  "author": "Team Legion <all.legion@meltwater.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meltwater/the-orchard/issues"
+  },
+  "homepage": "https://github.com/meltwater/the-orchard#readme",
+  "devDependencies": {
+    "@meltwater/eslint-config-legion": "1.2.0",
+    "@meltwater/project-tools-legion": "9.5.0",
+    "eslint": "8.17.0",
+    "jasmine": "4.1.0",
+    "nodemon": "2.0.16"
+  },
+  "dependencies": {
+    "@meltwater/coerce": "0.4.0",
+    "@npmcli/arborist": "4.2.0",
+    "argument-contracts": "1.2.3",
+    "colors": "1.4.0",
+    "esm": "3.2.25",
+    "globby": "11.0.4",
+    "got": "11.8.3",
+    "js-yaml": "4.1.0",
+    "semver": "7.3.7",
+    "sywac": "1.3.0"
+  },
+  "engines": {
+    "node": ">= 14.0.0"
+  }
+}
