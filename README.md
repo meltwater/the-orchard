@@ -1,6 +1,6 @@
 # the-orchard
 
-A CLI tool to generate the markup for including dependencies
+A CLI tool that takes your npm dependencies and turns them into script tags for inclusion in your HTML page.
 
 ## Usage
 
@@ -23,7 +23,7 @@ Putting the following text anywhere in a file will result in that string being r
 We recommend using a separate source file from your output file to allow for source control to ignore the generated file. The CLI command to accomplish this should look something like:
 
 ```bash
-orchard -i ./sourceHtmlFile.html -o ./outputHtmlFile.html
+orchard -i ./sourceFile.html -o ./outputFile.html
 ```
 
 ### Usage Implications
@@ -48,9 +48,9 @@ The `/registry-data` file formats are documented elsewhere. Follow the link belo
 
 - [dependencies](docs/README.md#dependency-file-format)
 
-## Assumptions when using the The Orchard
+## Assumptions when using The Orchard
 
-There are a handful of assumptions we had to make for the The Orchard to be functional:
+There are a handful of assumptions we had to make for The Orchard to be functional:
 
 - ALL script tags must be marked `defer` or `type="module"`
   - This is because we mark modern built scripts with `type="module"` and es5 built scripts with `nomodule defer` to allow a division between modern browser builds and legacy browser builds.
@@ -62,8 +62,8 @@ There are a handful of assumptions we had to make for the The Orchard to be func
     - All dependencies expected to be provided by the hosting application should be marked as a `dependency` in the their package.json
 - Multiple version includes
   - The Orchard will include one entry for each major version of a dependency
-  - The exception to this rule is any dependency marked with `conflictsWithOtherMajorVersions` in the The Orchard dependency list
-    - If two major versions of a conflicting dependency are needed, the The Orchard will throw an exception and stop immediately
+  - The exception to this rule is any dependency marked with `conflictsWithOtherMajorVersions` in The Orchard dependency list
+    - If two major versions of a conflicting dependency are needed, The Orchard will throw an exception and stop immediately
 - Version rollup within major version
   - If two different versions of the same dependency are required, and both are the same major version, we will keep the most up to date version.
   - Ex. some-dependency@1.0.0 and some-dependency@1.4.3 - We will keep some-dependency@1.4.3
@@ -77,7 +77,7 @@ There are a handful of assumptions we had to make for the The Orchard to be func
 The Orchard uses the node_modules directory as the source of truth for
 the dependencies required by the application. In a local development context,
 that can easily fall out of alignment with what is implied by
-package-lock.json.
+`package-lock.json`.
 
 When this happens you may see errors including:
 
@@ -113,7 +113,7 @@ orchard build is:
 
 There are three logging levels set by using the `--logging` flag on the cli:
 
-- silent - No logging at all
-- standard - Some logging but minimal
-- debug - A lot of output, but really nitty gritty details aren't shown
-- verbose - ALL THE THINGS!
+- `silent` - No logging at all
+- `standard` - Some logging but minimal
+- `debug` - A lot of output, but really nitty gritty details aren't shown
+- `verbose` - ALL THE THINGS!
