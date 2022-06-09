@@ -11,8 +11,7 @@ export class CliOptions {
         openFileLimit,
         outputFile,
         pathToPackageJson = 'package.json',
-        retryOpenFileSleepDuration,
-        usePackagedRegistry = false
+        retryOpenFileSleepDuration
     }) {
         ac.assertString(injectFile, 'injectFile');
         ac.assertString(dependencyDirectory, 'dependencyDirectory');
@@ -20,7 +19,6 @@ export class CliOptions {
         ac.assertString(outputFile, 'outputFile');
         ac.assertString(pathToPackageJson, 'pathToPackageJson');
         ac.assertNumber(retryOpenFileSleepDuration, 'retryOpenFileSleepDuration');
-        ac.assertBoolean(usePackagedRegistry, 'usePackagedRegistry');
 
         let safeLogging = LOGGING_LEVEL.STANDARD;
         if(LOGGING_LEVEL.isValid(logging)) {
@@ -34,7 +32,6 @@ export class CliOptions {
         this.outputFile = outputFile;
         this.pathToPackageJson = pathToPackageJson;
         this.retryOpenFileSleepDuration = retryOpenFileSleepDuration;
-        this.usePackagedRegistry = usePackagedRegistry;
 
         Object.freeze(this);
     }

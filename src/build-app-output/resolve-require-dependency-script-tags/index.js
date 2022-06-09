@@ -7,12 +7,12 @@ export function resolveRequiredDependencyScriptTags({ dependencies, dependencyMa
 
     return dependencies.reduce((tagsArray, dependency) => {
         if(dependencyMap[dependency.packageName]) {
-            const appletScriptTags = buildScriptTags({
+            const scriptTags = buildScriptTags({
                 externalPackageEntry: dependencyMap[dependency.packageName],
                 version: dependency.version
             });
 
-            return tagsArray.concat(appletScriptTags);
+            return tagsArray.concat(scriptTags);
         }
         return tagsArray;
     }, []);

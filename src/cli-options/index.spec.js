@@ -12,8 +12,7 @@ describe('cli options', () => {
             openFileLimit: 0,
             outputFile: 'places/and/things.txt',
             pathToPackageJson: 'here/be/package.json',
-            retryOpenFileSleepDuration: 1,
-            usePackagedRegistry: true
+            retryOpenFileSleepDuration: 1
         };
     });
 
@@ -117,23 +116,6 @@ describe('cli options', () => {
         new CliOptions(options);
 
         expect(ac.assertNumber).toHaveBeenCalledWith(options.retryOpenFileSleepDuration, 'retryOpenFileSleepDuration');
-    });
-
-    it('should assert usePackagedRegistry is a boolean', () => {
-        options.usePackagedRegistry = 'please do!';
-        spyOn(ac, 'assertBoolean');
-
-        new CliOptions(options);
-
-        expect(ac.assertBoolean).toHaveBeenCalledWith(options.usePackagedRegistry, 'usePackagedRegistry');
-    });
-
-    it('should default usePackagedRegistry to false', () => {
-        delete options.usePackagedRegistry;
-
-        const result = new CliOptions(options);
-
-        expect(result.usePackagedRegistry).toEqual(false);
     });
 
     it('should map options', () => {

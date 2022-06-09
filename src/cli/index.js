@@ -42,10 +42,6 @@ sywac
         desc: 'How long to wait (in milliseconds) before retrying when openFileLimit has been reached',
         defaultValue: 2000
     })
-    .boolean('--usePackagedRegistry', {
-        desc: 'Flag to indicate the application will reference packaged copy of registry instead of remote copy (only applies to applets)',
-        defaultValue: false
-    })
     .help('-h, --help')
     .parseAndExit()
     .then(options => ({ ...options, logging: loggingMap[options.logging] }))
