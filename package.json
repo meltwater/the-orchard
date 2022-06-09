@@ -1,6 +1,6 @@
 {
   "name": "the-orchard",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A CLI tool to generate the markup for including dependencies",
   "main": "src/index.js",
   "bin": {
