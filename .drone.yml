@@ -19,18 +19,6 @@ steps:
     NPM_INSTALL_TOKEN:
       from_secret: npm_install_token
 
-- name: validate-orchard-dependencies
-  pull: default
-  image: node:fermium
-  commands:
-  - alias source=.
-  - source ./secrets
-  - echo "//registry.npmjs.org/:_authToken=$${NPM_INSTALL_TOKEN}" > ~/.npmrc
-  - npm run validate-orchard-dependencies
-  environment:
-    NPM_INSTALL_TOKEN:
-      from_secret: npm_install_token
-
 - name: test
   pull: default
   image: node:fermium
