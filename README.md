@@ -111,7 +111,7 @@ orchard build is:
 
 ### Logging level
 
-There are three logging levels set by using the `--logging` flag on the cli:
+There are four logging levels set by using the `--logging` flag on the cli:
 
 - `silent` - No logging at all
 - `standard` - Some logging but minimal
