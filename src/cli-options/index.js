@@ -1,4 +1,5 @@
 import ac from 'argument-contracts';
+import { ORCHARD_INJECT_STRING } from '../constants';
 import { LOGGING_LEVEL } from '../logger';
 
 export const DO_NOT_INJECT = '**%%DO_NOT_INJECT%%**';
@@ -9,7 +10,7 @@ export class CliOptions {
         injectFile = DO_NOT_INJECT,
         logging,
         openFileLimit,
-        orchardInjectString,
+        orchardInjectString = ORCHARD_INJECT_STRING,
         outputFile,
         pathToPackageJson = 'package.json',
         retryOpenFileSleepDuration
