@@ -1,5 +1,4 @@
 import ac from 'argument-contracts';
-import { ORCHARD_INJECT_STRING } from '../constants';
 import { checkForRequiredInitialization } from './check-for-required-initialization';
 import { CliOptions, DO_NOT_INJECT } from '../cli-options';
 import fs from 'fs';
@@ -108,7 +107,7 @@ export async function buildAppOutput(cliOptions) {
 
     if (cliOptions.injectFile && cliOptions.injectFile !== DO_NOT_INJECT) {
         const fileContentToInjectInto = fs.readFileSync(cliOptions.injectFile, { encoding: 'utf8' });
-        const updatedFileContent = fileContentToInjectInto.replace(ORCHARD_INJECT_STRING, output);
+        const updatedFileContent = fileContentToInjectInto.replace(cliOptions.orchardInjectString, output);
         fs.writeFileSync(cliOptions.outputFile, updatedFileContent);
     } else {
         fs.writeFileSync(cliOptions.outputFile, output);

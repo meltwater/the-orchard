@@ -30,6 +30,10 @@ sywac
     .string('-i, --injectFile', {
         desc: `The file to inject script tags into. Replaces well known string "${ORCHARD_INJECT_STRING}"`
     })
+    .string('-s, --orchardInjestString', {
+        desc: 'The string in your index file to be replaced with script tags.',
+        defaultValue: ORCHARD_INJECT_STRING
+    })
     .number('--openFileLimit', {
         desc: 'The maximum number of files to have open when doing many simultaneous operations (e.g. reading package.json files)',
         defaultValue: 4000
