@@ -10,6 +10,7 @@ describe('cli options', () => {
             injectFile: 'starting/point/of/file.txt',
             logging: LOGGING_LEVEL.SILENT,
             openFileLimit: 0,
+            orchardInjectString: '<!-- things -->',
             outputFile: 'places/and/things.txt',
             pathToPackageJson: 'here/be/package.json',
             retryOpenFileSleepDuration: 1
@@ -74,6 +75,14 @@ describe('cli options', () => {
         new CliOptions(options);
 
         expect(ac.assertNumber).toHaveBeenCalledWith(options.openFileLimit, 'openFileLimit');
+    });
+
+    it('should asset orchardInjectString is a string', () => {
+        spyOn(ac, 'assertString');
+
+        new CliOptions(options);
+
+        expect(ac.assertString).toHaveBeenCalledWith(options.orchardInjectString, 'orchardInjectString');
     });
 
     it('should assert outputFile is a string', () => {

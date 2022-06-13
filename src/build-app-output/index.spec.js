@@ -43,6 +43,7 @@ describe('build app output', () => {
             excludeDirectDependencies: false,
             dependencyDirectory: 'her/there/everywhere',
             openFileLimit: 4,
+            orchardInjectString: '<!-- wat -->',
             outputFile: 'plumbus.html',
             retryOpenFileSleepDuration: 10
         });
@@ -189,10 +190,11 @@ describe('build app output', () => {
         });
 
         it('should inject output into the file', async () => {
+            const orchardInjectString = 'watwatwatwatwat';
             const outputFile = 'The best output';
             const beforeInjectionLocation = 'This file has been injected into!';
             const afterInjectionLocation = 'YEAH BOIIIIIIIIIII!';
-            const fileContent = `${beforeInjectionLocation}${ORCHARD_INJECT_STRING}${afterInjectionLocation}`;
+            const fileContent = `${beforeInjectionLocation}${orchardInjectString}${afterInjectionLocation}`;
             const output = 'The greatest output Evar';
             fs.readFileSync.and.returnValue(fileContent);
             ResolveRequiredDependencyScriptTagsModule.resolveRequiredDependencyScriptTags.and.returnValue([output])
@@ -200,6 +202,7 @@ describe('build app output', () => {
             await buildAppOutput({
                 ...cliOptions,
                 injectFile: 'yarp.txt',
+                orchardInjectString,
                 outputFile
             });
 
