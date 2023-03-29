@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -e
+
+echo "Generating documentation"
+CUSTOM_DOCS_SCRIPT=$(node -p "require('./package.json').scripts.docs !== undefined")
+if [ "$CUSTOM_DOCS_SCRIPT" == "true" ]; then
+    npm run docs
+else
+    echo "No 'docs' run-script found. Falling back to default generation."
+    npx documentation build ./src/index.js -f md > ./docs/API.md
+fi
+
+if [ -n "$(git status -s)" ]; then
+    echo "Committing and pushing updated documentation"
+    if [ -f ./docs/API.md ]; then
+        git add ./docs/API.md
+    fi
+
+    if [ -f README.md ]; then
+        git add README.md
+    fi
+
+    git commit -m "Updated documentation" --allow-empty
+    git push
+fi
+
+true

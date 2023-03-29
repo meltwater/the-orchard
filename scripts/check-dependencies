@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+echo "Dependencies"
+npm outdated
+if [ -z $1 ]; then
+    LOOP_COUNT=0
+    while npm audit 2>&1 | grep ENOAUDIT; do
+        let LOOP_COUNT=($LOOP_COUNT + 1)
+        if [ $LOOP_COUNT -gt 5 ]; then
+            echo "Too many failures...";
+            exit -1
+        fi
+        sleep 1
+    done
+else
+    npm audit; true
+    echo "                     .....''',,,,,,,,''....                 "
+    echo "          ..,;clodkO00KKXNNWWWWWWWWWWWNNXK0Okdoc;'.         "
+    echo "         :OXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKkoc'.    "
+    echo "        .xMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0l.  "
+    echo "        .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk. "
+    echo "        'xKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNl "
+    echo "          .';cox0NMMMMMMMMMMMMMMMMMMMMMWNK0OOOO0XNMMMMMMMMx."
+    echo "                .,ckXWMMMMMMMMMMMMMN0dc;'..    ..':dKWMMMM0'"
+    echo "                    .lKMMMMMMMMMWKd,.      .;:ccc:;''lKMMMK,"
+    echo "             ..       dWMMMMMMWWk.     .,lOXWMMMMMWXOooXMMX;"
+    echo "       .cdxk0K0kl'   cXMMMMMMMWWO'  .;o0NMMMMMMMMMMMMMNWMMN:"
+    echo "       ,KMMMMMMMMNO:.,dKMMMMMMMMMKdxKWMMMMMMMMMMMMMMMMMMMMN:"
+    echo "        ,loooodxOKNNo. 'kWMMMMMMMMMMMMWX0OO0XWWMMMMMMMMMMMN:"
+    echo "                 .,c;.  ,KMMMMMMMMMMKd;.. ...';cx0NMMMMMMMN:"
+    echo "       '.               .OMMMMMMMMMNc            .':ldkXMMNc"
+    echo "    ..';;'....;ldxO0d.  .kMMMMMMMMMWXkoc,'........,ldxxKWMWl"
+    echo "   .kXXXKKKK0KNMMMMMO.  .kMMMMMMMMMMMMMMWNXXKKKKKXWMMMMMMMWo"
+    echo "   .oNMMMMMMMMMMMMMX:   .kMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMo"
+    echo "    .dWMMMMMMMMMMMWx.   .kMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMo"
+    echo "     .xWMMMMMMMMMM0'    .kMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWl"
+    echo "      '0MMMMMMMWKd'     .kMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN:"
+    echo "       :XMMMN0d;.       .xMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWW0,"
+    echo "        ,loc'..,.        ;0WMMMMMWNNWMMMMMMMWNXNWMMMMMNOKWx."
+    echo "           .:xKWKc.       .;lddddxldXMMMMMMMWN0ko:ldk0O0WNc "
+    echo "  .'      .kWMMMMNOl.            c0WMMMMMMMMMMXo. .l0NWMMO. "
+    echo "  .l:      'dxooxOOx,     .'.     'dXWWWWWWXOl.  ;OWMMMMNc  "
+    echo "   .ol.                  ;ONO,      .',,,,'.   'xNMMMMMWx.  "
+    echo "    .oo.                :xOOOx,      ........,oKWMMMMMMK;   "
+    echo "     .ld.  .,ldddooolllloolllllc::::dKKKKKKKXNWMMMMMMMWo    "
+    echo "       cx;   .,cdOKNWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO'    "
+    echo "        ,xl.      ..',;::cclloodd0WMMMMMMMMMMMMMMMMMMX:     "
+    echo "         .ox,      ,oxxo.      .;OWMMMMMMMMMMMMMMMMMNo.     "
+    echo "           ;xl.   .kMMMMk.    ,d0MMMMMMMMMMMMMMMMMMKc       "
+    echo "            .ld,   :XMMMd.    .lOMMMMMMMMMMMMMMMMXd'        "
+    echo "              'oc.  lNMWl     .,xMMMMMMMMMMMMMN0o'          "
+    echo "                ,;. .dWMo     'o0MMMMMMMMMMWKd;.            "
+    echo "                     .xWk.    cXNMMMMMMMMXkc.               "
+    echo "                      .kK;   .kMMMMMMMN0l'                  "
+    echo "                       .l'   ;XMMMMW0d,.                    "
+    echo "                             :Okxdc,.          "
+    echo "Please re-enable fail on scan..... Otherwise anyone can break you."
+fi

@@ -15,8 +15,8 @@
     "demo": "cd demo && npm start",
     "docs": "npx documentation build ./src/index.js -f md > ./docs/API.md",
     "postversion": "git push --follow-tags",
-    "pretest": "check-dependencies && eslint src/",
-    "preversion": "preversion --commit-docs",
+    "pretest": "scripts/check-dependencies && eslint src/",
+    "preversion": "scripts/preversion --commit-docs",
     "start": "cd demo && npm ci && npm start",
     "test": "scripts/test",
     "test:live": "nodemon -x 'scripts/test' -w js,json --watch src/",
@@ -35,8 +35,8 @@
   },
   "homepage": "https://github.com/meltwater/the-orchard#readme",
   "devDependencies": {
-    "@meltwater/project-tools-legion": "9.5.0",
     "eslint": "8.37.0",
+    "figlet": "1.5.2",
     "jasmine": "4.6.0",
     "nodemon": "2.0.22"
   },
