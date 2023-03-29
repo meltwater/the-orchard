@@ -35,7 +35,6 @@
   },
   "homepage": "https://github.com/meltwater/the-orchard#readme",
   "devDependencies": {
-    "@meltwater/eslint-config-legion": "1.3.0",
     "@meltwater/project-tools-legion": "9.5.0",
     "eslint": "8.37.0",
     "jasmine": "4.6.0",
