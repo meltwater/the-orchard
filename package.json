@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@meltwater/coerce": "0.4.0",
-    "@npmcli/arborist": "4.2.0",
+    "@npmcli/arborist": "6.2.5",
     "argument-contracts": "1.2.3",
     "colors": "1.4.0",
     "esm": "3.2.25",
