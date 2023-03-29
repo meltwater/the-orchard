@@ -3,9 +3,15 @@
 #                                                                              #
 # preversion - verify a code base as ready to release a new version            #
 #                                                                              #
+# - it is clean of uncommitted changes                                         #
 # - it is based on the master or main branch                                   #
 # - it is up-to-date with the git remote                                       #
 # - it passes tests                                                            #
+#                                                                              #
+# option: --commit-docs                                                        #
+#                                                                              #
+#   optionally commit updated documentation and check of EOL features.         #
+#   see commit-api-documentation-current and check-deprecated-eol for details. #
 #                                                                              #
 ################################################################################
 set -e
