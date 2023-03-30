@@ -26,10 +26,10 @@ The details of an supporting library for dependency resolution and contact infor
 
     *   `options.basePath` **[string][15]** The base url for all asset paths
     *   `options.conflictsWithOtherMajorVersions` **[boolean][16]** This dependency does not implement version namespacing and could break if another instance, even of another major version, is present in the browser context
-    *   `options.contact` **[Contact][17]** The contact information for the owner
-    *   `options.es5` **[Array][18]<[string][15]>?** The file paths needed for ES5 rendering. Either `es5`, `esm`, or both must be provided.
-    *   `options.esm` **[Array][18]<[string][15]>?** The file paths needed for ESM rendering. Either `es5`, `esm`, or both must be provided.
-    *   `options.orchardDependencies` **[Array][18]<[string][15]>?** Package names of other dependencies in the orchard that this directly depends upon
+    *   `options.contact` **[Contact][11]** The contact information for the owner
+    *   `options.es5` **[Array][17]<[string][15]>?** The file paths needed for ES5 rendering. Either `es5`, `esm`, or both must be provided.
+    *   `options.esm` **[Array][17]<[string][15]>?** The file paths needed for ESM rendering. Either `es5`, `esm`, or both must be provided.
+    *   `options.orchardDependencies` **[Array][17]<[string][15]>?** Package names of other dependencies in the orchard that this directly depends upon
     *   `options.ownedBy` **[string][15]** The name of the team or group who owns this package
     *   `options.packageName` **[string][15]** The name of the package published to NPM including the namespace. Eg. @meltwater/volume-by-input-column
     *   `options.requiresInitialization` **[boolean][16]** This dependency requires needs to be initialized on the page before it can be used
@@ -42,7 +42,7 @@ Evaluate whether this dependency has a conflict with the given major version
 
 #### Parameters
 
-*   `majorVersion` **[number][19]** The major version number (e.g. 13, not 13.0.0) to check
+*   `majorVersion` **[number][18]** The major version number (e.g. 13, not 13.0.0) to check
 
 Returns **[boolean][16]** True if this dependency has a conflict with the given major version; otherwise false
 
@@ -54,7 +54,7 @@ Generate ES5 urls used in script tags
 
 *   `version` **[string][15]** The full version to be used for ES5 urls
 
-Returns **[Array][18]<[string][15]>** The urls for all ES5 assets for this dependency
+Returns **[Array][17]<[string][15]>** The urls for all ES5 assets for this dependency
 
 ### getEsmUrls
 
@@ -64,7 +64,7 @@ Generate ESM urls used in script tags
 
 *   `version` **[string][15]** The full version to be used for ESM urls
 
-Returns **[Array][18]<[string][15]>** The urls for all ESM assets for this dependency
+Returns **[Array][17]<[string][15]>** The urls for all ESM assets for this dependency
 
 ### getCssUrls
 
@@ -74,7 +74,7 @@ Generate CSS urls used in style tags
 
 *   `version` **[string][15]** The full version to be used for CSS urls
 
-Returns **[Array][18]<[string][15]>** The urls for all CSS assets for this dependency
+Returns **[Array][17]<[string][15]>** The urls for all CSS assets for this dependency
 
 ## Contact
 
@@ -85,11 +85,11 @@ be provided.
 
 ### Parameters
 
-*   `$0` **[Object][14]** 
+*   `$0` **[Object][14]**&#x20;
 
-    *   `$0.email`  
-    *   `$0.slack`  
-    *   `$0.url`  
+    *   `$0.email` &#x20;
+    *   `$0.slack` &#x20;
+    *   `$0.url` &#x20;
 *   `email` **[string][15]** Email address
 *   `slack` **[string][15]** Slack channel name
 *   `url` **[string][15]** URL to associate with a particular orchard entry
@@ -132,8 +132,6 @@ be provided.
 
 [16]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
-[17]: #contact
+[17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
-
-[19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
