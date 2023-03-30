@@ -15,8 +15,8 @@
     "demo": "cd demo && npm start",
     "docs": "npx documentation build ./src/index.js -f md > ./docs/API.md",
     "postversion": "git push --follow-tags",
-    "pretest": "check-dependencies && eslint src/",
-    "preversion": "preversion --commit-docs",
+    "pretest": "scripts/check-dependencies && eslint src/",
+    "preversion": "scripts/preversion --commit-docs",
     "start": "cd demo && npm ci && npm start",
     "test": "scripts/test",
     "test:live": "nodemon -x 'scripts/test' -w js,json --watch src/",
@@ -35,22 +35,19 @@
   },
   "homepage": "https://github.com/meltwater/the-orchard#readme",
   "devDependencies": {
-    "@meltwater/eslint-config-legion": "1.2.0",
-    "@meltwater/project-tools-legion": "9.5.0",
-    "eslint": "8.17.0",
-    "jasmine": "4.1.0",
-    "nodemon": "2.0.16"
+    "eslint": "8.37.0",
+    "figlet": "1.5.2",
+    "jasmine": "4.6.0",
+    "nodemon": "2.0.22"
   },
   "dependencies": {
     "@meltwater/coerce": "0.4.0",
-    "@npmcli/arborist": "4.2.0",
+    "@npmcli/arborist": "6.2.5",
     "argument-contracts": "1.2.3",
     "colors": "1.4.0",
     "esm": "3.2.25",
-    "globby": "11.0.4",
-    "got": "11.8.3",
     "js-yaml": "4.1.0",
-    "semver": "7.3.7",
+    "semver": "7.3.8",
     "sywac": "1.3.0"
   },
   "engines": {

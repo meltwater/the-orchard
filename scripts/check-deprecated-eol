@@ -1,0 +1,119 @@
+#!/usr/bin/env node
+/**
+ * check-deprecated-eol
+ *
+ * Currently supports the JSDoc @deprecated directive.
+ *
+ * Tips:
+ *   - Mark code as deprecated with the planned removal version (e.g. @deprecated until v7)
+ *   - Only major versions matter
+ *     - removing from the public interface is a breaking change
+ *     - non-public interfaces don't require this level of documentation
+ *   - Before triggering a new major version, run the script in the package root
+ *     - Recommend using check-deprecated-eol-preversion
+ */
+const MODE = {
+    FAIL: 'fail',
+    PREVERSION: 'preversion',
+    WARN: 'warn'
+};
+
+const exec = require('child_process').exec;
+
+require('sywac')
+    .preface(
+        require('figlet').textSync('check-deprecated-eol', 'Doom'),
+        'YAGNI with teeth'
+    )
+    .positional('[path=src]', {
+        paramsDesc: 'The path to search'
+    })
+    .enumeration(`-m, --mode [mode=${MODE.PREVERSION}]`, {
+        choices: [MODE.FAIL, MODE.WARN, MODE.PREVERSION],
+        desc: 'How to respond to features reaching end of life'
+    })
+    .help('-h, --help')
+    .epilogue('This utility checks for documented deprecations and that are at end of life in the current major version.')
+    .parseAndExit()
+    .then(main)
+    .then(() => process.exit(0))
+    .catch(error => {
+        console.error('Error checking JSDoc for deprecated features at end-of-life!');
+        console.error(error);
+        process.exit(1)
+    });
+
+const getDeprecations = path => new Promise(resolve => {
+    // Put user input directly onto the command lulz
+    exec(`grep -nr "@deprecated" ${path}`, (error, stdout) => {
+        const deprecations = stdout.split('\n').slice(0, -1)
+            .map(deprecation => {
+                // filename:linenumber * line contents vVersionNumber
+                const fileDetails = deprecation.match(/([^:]+):(\d+)/);
+                const versionDetails = deprecation.match(/.*v(\d+)/);
+
+                return {
+                    file: fileDetails[1],
+                    line: fileDetails[2],
+                    until: versionDetails ? parseInt(versionDetails[1]) : false
+                }
+            });
+
+        resolve(deprecations);
+    });
+});
+
+function isPreversionMajor () {
+    if (process.env.npm_config_argv) {
+        const [ npmCommand, npmArgument ] = JSON.parse(process.env.npm_config_argv).original;
+
+        return npmCommand !== 'version' || npmArgument === 'major';
+    }
+
+    if (process.env.npm_old_version && process.env.npm_new_version) {
+        const {
+            npm_command,
+            npm_new_version,
+            npm_old_version
+        } = process.env;
+
+        return npm_command !== 'version' || npm_new_version.split('.')[0] !== npm_old_version.split('.')[0];
+    }
+
+    throw new RangeError('Cannot operate in preversion mode when not invoked by `npm run`');
+}
+
+async function main (argv) {
+    let nextVersionMajorNumber = require(`${process.cwd()}/package`).version.match(/\d+/)[0];
+    const { mode, path } = argv;
+    const deprecations = await getDeprecations(path);
+
+    if (!mode || mode === MODE.PREVERSION) {
+        if (isPreversionMajor()) {
+            nextVersionMajorNumber++;
+        }
+    }
+
+    const eols = deprecations.filter(deprecation => !deprecation.until || deprecation.until <= nextVersionMajorNumber);
+
+    if (eols.length > 0) {
+        console.log('\x1b[31m[ERROR] @deprecated JSDoc directives found:\x1b[0m');
+
+        for (const eol of eols) {
+            let versionBanner;
+
+            if (eol.until) {
+                versionBanner = `(until v${eol.until})`;
+            }
+            else {
+                versionBanner = '(immediately)';
+            }
+
+            console.log(`\t* ${eol.file}:${eol.line} ${versionBanner}`);
+        }
+
+        if (mode !== MODE.WARN) {
+            throw new Error();
+        }
+    }
+}
