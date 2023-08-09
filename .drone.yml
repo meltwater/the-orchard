@@ -1,6 +1,7 @@
 ---
 kind: pipeline
 name: default
+type: docker
 
 platform:
   os: linux
@@ -8,8 +9,7 @@ platform:
 
 steps:
 - name: npm_install
-  pull: default
-  image: node:fermium
+  image: node:hydrogen
   commands:
   - echo "//registry.npmjs.org/:_authToken=$${NPM_INSTALL_TOKEN}" > ~/.npmrc
   - npm ci
@@ -18,8 +18,7 @@ steps:
       from_secret: npm_install_token
 
 - name: test
-  pull: default
-  image: node:fermium
+  image: node:hydrogen
   commands:
   - echo "//registry.npmjs.org/:_authToken=$${NPM_INSTALL_TOKEN}" > ~/.npmrc
   - npm test
@@ -28,8 +27,7 @@ steps:
       from_secret: npm_install_token
 
 - name: typings
-  pull: default
-  image: node:fermium
+  image: node:hydrogen
   commands:
   - echo "//registry.npmjs.org/:_authToken=$${NPM_INSTALL_TOKEN}" > ~/.npmrc
   - npm run types
@@ -38,8 +36,7 @@ steps:
       from_secret: npm_install_token
 
 - name: release
-  pull: default
-  image: node:fermium
+  image: node:hydrogen
   commands:
   - echo "//registry.npmjs.org/:_authToken=$${NPM_DEPLOY_TOKEN}" > ~/.npmrc
   - echo "unsafe-perm=true" >> ~/.npmrc
