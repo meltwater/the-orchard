@@ -1,5 +1,5 @@
+import { Arborist } from '@npmcli/arborist';
 import { buildDependencyArray } from '.';
-import * as ArboristModule from '@npmcli/arborist';
 import * as NpmDependencyWithChildDependenciesModule from '../npm-dependency-with-child-dependencies';
 import { Logger } from '../../logger';
 
@@ -24,7 +24,7 @@ describe('using arborist to build dependency array', () => {
 
         fakeArborist.loadVirtual.and.resolveTo(noDependencyNode);
 
-        spyOn(ArboristModule, 'Arborist').and.returnValue(fakeArborist);
+        spyOn(Arborist, 'Arborist').and.returnValue(fakeArborist);
         spyOn(NpmDependencyWithChildDependenciesModule.NpmDependencyWithChildDependencies, 'fromArboristEdge').and.callFake(({ depth, arboristEdge }) => ({
             depth,
             packageName: arboristEdge.name,
@@ -39,7 +39,7 @@ describe('using arborist to build dependency array', () => {
             pathToPackageJson: 'hello/package.json'
         });
 
-        expect(ArboristModule.Arborist).toHaveBeenCalledWith({
+        expect(Arborist).toHaveBeenCalledWith({
             path: `${process.cwd()}/hello`
         });
     });

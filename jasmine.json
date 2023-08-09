@@ -1,7 +1,7 @@
 {
     "helper paths are relative to": "spec_dir",
     "helpers": [
-        "../node_modules/esm/esm.js"
+        "../node_modules/@babel/register/lib/index.js"
     ],
     "jsLoader": "require",
     "spec_dir": "./src",

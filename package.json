@@ -2,26 +2,24 @@
   "name": "the-orchard",
   "version": "0.2.1",
   "description": "A CLI tool to generate the markup for including dependencies",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "bin": {
-    "orchard": "src/cli.entry.js"
+    "orchard": "dist/cli.entry.js"
   },
   "types": "./types/index.d.ts",
-  "mpkg": [
-    "dist/*"
-  ],
   "scripts": {
+    "build": "scripts/build",
     "clean": "rm -rf ./dist",
-    "demo": "cd demo && npm start",
+    "demo": "npm run build && cd demo && npm start",
     "docs": "npx documentation build ./src/index.js -f md > ./docs/API.md",
     "postversion": "git push --follow-tags",
     "pretest": "scripts/check-dependencies && eslint src/",
     "preversion": "scripts/preversion --commit-docs",
-    "start": "cd demo && npm ci && npm start",
+    "start": "npm run build && cd demo && npm ci && npm start",
     "test": "scripts/test",
     "test:live": "nodemon -x 'scripts/test' -w js,json --watch src/",
     "update": "npx npm-check -uE",
-    "types": "npx typescript src/index.js --declaration --allowJs --emitDeclarationOnly --outDir types"
+    "types": "npx --package=typescript tsc src/index.js --declaration --allowJs --emitDeclarationOnly --outDir types"
   },
   "repository": {
     "type": "git",
@@ -35,6 +33,10 @@
   },
   "homepage": "https://github.com/meltwater/the-orchard#readme",
   "devDependencies": {
+    "@babel/cli": "7.22.10",
+    "@babel/core": "7.22.10",
+    "@babel/preset-env": "7.22.10",
+    "@babel/register": "7.22.5",
     "eslint": "8.37.0",
     "figlet": "1.5.2",
     "jasmine": "4.6.0",
@@ -45,7 +47,6 @@
     "@npmcli/arborist": "6.2.5",
     "argument-contracts": "1.2.3",
     "colors": "1.4.0",
-    "esm": "3.2.25",
     "js-yaml": "4.1.0",
     "semver": "7.3.8",
     "sywac": "1.3.0"
