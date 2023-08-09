@@ -38,4 +38,8 @@ steps:
   when:
     event:
     - tag
+---
+kind: signature
+hmac: 689aafa985f930c8725d3263484a23a62f10da508cb22beb826f9ca798c0e3cb
+
 ...
