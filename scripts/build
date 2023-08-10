@@ -2,9 +2,9 @@
 
 npm run clean
 
-babel src --out-dir dist/ --copy-files --ignore spec.js # Babel for es5/node
+babel src --out-dir cjs/ --copy-files --ignore spec.js # Babel for es5/node
 
-rm -rf dist/**/*.spec.js
+rm -rf cjs/**/*.spec.js
 
 npm run types
 

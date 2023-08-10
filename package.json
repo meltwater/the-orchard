@@ -2,14 +2,14 @@
   "name": "the-orchard",
   "version": "0.2.1",
   "description": "A CLI tool to generate the markup for including dependencies",
-  "main": "dist/index.js",
+  "main": "cjs/index.js",
   "bin": {
-    "orchard": "dist/cli.entry.js"
+    "orchard": "cjs/cli.entry.js"
   },
   "types": "./types/index.d.ts",
   "scripts": {
     "build": "scripts/build",
-    "clean": "rm -rf ./dist",
+    "clean": "rm -rf ./cjs",
     "demo": "npm run build && cd demo && npm start",
     "docs": "npx documentation build ./src/index.js -f md > ./docs/API.md",
     "postversion": "git push --follow-tags",

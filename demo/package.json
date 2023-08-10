@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "types": "./types/index.d.ts",
   "scripts": {
-    "start": "node ../dist/cli.entry.js -i index.source.html -o index.html && ws --spa index.html"
+    "start": "node ../cjs/cli.entry.js -i index.source.html -o index.html && ws --spa index.html"
   },
   "devDependencies": {
     "local-web-server": "5.2.1"
