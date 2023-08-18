@@ -54,10 +54,16 @@ describe('ExternalPackageEntry', () => {
         expect(ac.assertString).toHaveBeenCalledWith(options.versionPath, 'versionPath');
     });
 
-    it('should throw if versionPath does not contain {{version}} for mustaching', () => {
+    it('should NOT throw if versionPath does not contain {{version}} for mustaching', () => {
         options.versionPath = 'versionVersion';
 
-        expect(() => new ExternalPackageEntry(options)).toThrowError(/versionPath/);
+        expect(() => new ExternalPackageEntry(options)).not.toThrowError(/versionPath/);
+    });
+
+    it('should allow versionPath to contain a string representing a specific version', () => {
+        options.versionPath = '1.14.0-STARFLEET-1701.D';
+
+        expect(() => new ExternalPackageEntry(options)).not.toThrowError(/versionPath/);
     });
 
     it('should assert es5 is an array of strings', () => {
@@ -349,6 +355,19 @@ describe('ExternalPackageEntry', () => {
             const expectedUrl = [options.basePath, interpolatedVersion, override.es5[0]].join('');
             expect(results).toEqual([ expectedUrl ]);
         });
+
+        it('should return the built urls for es5 files for explicit versionPath with no mustache', () => {
+            const version = 'yes.this.version';
+            const versionPath = 'v' + version;
+
+            dependencyEntry = new ExternalPackageEntry({
+                ...options,
+                versionPath
+            });
+            const results = dependencyEntry.getEs5Urls(version);
+
+            expect(results).toEqual([ [options.basePath, versionPath, options.es5].join('') ]);
+        });
     });
 
     describe('getEsmUrls', () => {
@@ -447,6 +466,19 @@ describe('ExternalPackageEntry', () => {
             const interpolatedVersion = options.versionPath.replace(/{{version}}/, version);
             const expectedUrl = [options.basePath, interpolatedVersion, override.esm[0]].join('');
             expect(results).toEqual([ expectedUrl ]);
+        });
+
+        it('should return the built urls for esm files for explicit versionPath with no mustache', () => {
+            const version = 'yes.this.version';
+            const versionPath = 'v' + version;
+
+            dependencyEntry = new ExternalPackageEntry({
+                ...options,
+                versionPath
+            });
+            const results = dependencyEntry.getEsmUrls(version);
+
+            expect(results).toEqual([ [options.basePath, versionPath, options.esm].join('') ]);
         });
     });
 
@@ -547,6 +579,19 @@ describe('ExternalPackageEntry', () => {
             const interpolatedVersion = options.versionPath.replace(/{{version}}/, version);
             const expectedUrl = [options.basePath, interpolatedVersion, override.css[0]].join('');
             expect(results).toEqual([ expectedUrl ]);
+        });
+
+        it('should return the built urls for css files for explicit versionPath with no mustache', () => {
+            const version = 'yes.this.version';
+            const versionPath = 'v' + version;
+
+            dependencyEntry = new ExternalPackageEntry({
+                ...options,
+                versionPath
+            });
+            const results = dependencyEntry.getCssUrls(version);
+
+            expect(results).toEqual([ [options.basePath, versionPath, options.css].join('') ]);
         });
     });
 });

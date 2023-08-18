@@ -13,6 +13,7 @@
   "dependencies": {
     "moment": "2.29.4",
     "moment-timezone": "0.5.35",
+    "nop": "1.0.0",
     "uhtml": "3.0.1"
   }
 }

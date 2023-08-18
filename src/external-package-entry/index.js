@@ -38,10 +38,6 @@ export class ExternalPackageEntry {
         ac.assertString(repo, 'repo');
         ac.assertString(versionPath, 'versionPath');
 
-        if(!versionPath.includes('{{version}}')) {
-            throw new Error(`versionPath must include {{version}} for where the version number should be included. Provided value: ${versionPath}`);
-        }
-
         if(esm.length === 0 && es5.length === 0) {
             throw new Error('Either es5 or esm must be provided, or both.');
         }
