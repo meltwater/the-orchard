@@ -8,6 +8,7 @@
   basePath: https://unpkg.com/npm@
   esm:
     - /index.js
+  # This is to confirm values without `{{version}}` will work
   versionPath: '1.0.0'
   conflictsWithOtherMajorVersions: true
   requiresInitialization: false
