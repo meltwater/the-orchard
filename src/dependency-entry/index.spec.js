@@ -53,10 +53,10 @@ describe('DependencyEntry', () => {
         expect(ac.assertString).toHaveBeenCalledWith(options.versionPath, 'versionPath');
     });
 
-    it('should throw if versionPath does not contain {{version}} for mustaching', () => {
+    it('should not throw if versionPath does not contain {{version}} for mustaching', () => {
         options.versionPath = 'versionVersion';
 
-        expect(() => new DependencyEntry(options)).toThrowError(/versionPath/);
+        expect(() => new DependencyEntry(options)).not.toThrowError(/versionPath/);
     });
 
     it('should assert es5 is an array of strings', () => {
