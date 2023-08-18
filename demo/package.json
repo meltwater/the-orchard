@@ -11,7 +11,7 @@
     "local-web-server": "5.2.1"
   },
   "dependencies": {
-    "moment": "2.29.3",
+    "moment": "2.29.4",
     "moment-timezone": "0.5.34",
     "uhtml": "3.0.1"
   }
