@@ -1,3 +1,6 @@
-export * from './dependency-entry';
-export * from './cli-options';
-export * from './build-app-output';
+export { DependencyEntry } from './dependency-entry';
+export {
+    CliOptions,
+    DO_NOT_INJECT
+} from './cli-options';
+export { buildAppOutput } from './build-app-output';
