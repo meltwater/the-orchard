@@ -1,0 +1,13 @@
+'nop':
+  # Ownership information
+  ownedBy: supershabam
+  repo: https://github.com/supershabam/nop
+  contact:
+    url: https://github.com/supershabam/nop/issues
+  # Technical Details
+  basePath: https://unpkg.com/npm@
+  esm:
+    - /index.js
+  versionPath: '1.0.0'
+  conflictsWithOtherMajorVersions: true
+  requiresInitialization: false
