@@ -13,7 +13,8 @@ export class CliOptions {
         orchardInjectString = ORCHARD_INJECT_STRING,
         outputFile,
         pathToPackageJson = 'package.json',
-        retryOpenFileSleepDuration
+        retryOpenFileSleepDuration,
+        outputDepcache = false
     }) {
         ac.assertString(injectFile, 'injectFile');
         ac.assertString(dependencyDirectory, 'dependencyDirectory');
@@ -22,6 +23,7 @@ export class CliOptions {
         ac.assertString(outputFile, 'outputFile');
         ac.assertString(pathToPackageJson, 'pathToPackageJson');
         ac.assertNumber(retryOpenFileSleepDuration, 'retryOpenFileSleepDuration');
+        ac.assertBoolean(outputDepcache, 'outputDepcache');
 
         let safeLogging = LOGGING_LEVEL.STANDARD;
         if(LOGGING_LEVEL.isValid(logging)) {
@@ -36,6 +38,7 @@ export class CliOptions {
         this.outputFile = outputFile;
         this.pathToPackageJson = pathToPackageJson;
         this.retryOpenFileSleepDuration = retryOpenFileSleepDuration;
+        this.outputDepcache = outputDepcache;
 
         Object.freeze(this);
     }
