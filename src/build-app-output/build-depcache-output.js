@@ -59,14 +59,14 @@ export async function buildDepcacheOutput(cliOptions) {
     });
 
     const output = [
-        ...dependencyScripts
-    ].join(',\n');
+        ...dependencyScripts.map(script => script.replace(/"/g, ''))
+    ];
 
     if (cliOptions.injectFile && cliOptions.injectFile !== DO_NOT_INJECT) {
         const fileContentToInjectInto = fs.readFileSync(cliOptions.injectFile, { encoding: 'utf8' });
-        const updatedFileContent = fileContentToInjectInto.replace(cliOptions.orchardInjectString, output);
+        const updatedFileContent = fileContentToInjectInto.replace(cliOptions.orchardInjectString, JSON.stringify(output, null, 2));
         fs.writeFileSync(cliOptions.outputFile, updatedFileContent);
     } else {
-        fs.writeFileSync(cliOptions.outputFile, output);
+        fs.writeFileSync(cliOptions.outputFile, JSON.stringify(output, null, 2));
     }
 }

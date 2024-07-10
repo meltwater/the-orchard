@@ -2,7 +2,7 @@ import sywac from 'sywac';
 import { ORCHARD_INJECT_STRING } from '../constants';
 import { CliOptions } from '../cli-options';
 import { buildAppOutput } from '../build-app-output';
-import { buildDepcacheOutput } from '../build-app-output/build-depcache-output.js'
+import { buildDepcacheOutput } from '../build-app-output/build-depcache-output.js';
 import { Logger, LOGGING_LEVEL } from '../logger';
 
 Logger.setLoggingLevel(LOGGING_LEVEL.DEBUG);
