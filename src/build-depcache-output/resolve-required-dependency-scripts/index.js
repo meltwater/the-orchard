@@ -15,8 +15,8 @@ export function resolveRequiredDependencyScripts({ dependencies, dependencyMap }
     ac.assertType(dependencies, Object, 'dependencies');
     ac.assertType(dependencyMap, Object, 'dependencyMap');
 
-    const scriptsArray = dependencies.reduce((scriptsArray, dependency) => {
-        if(dependencyMap[dependency.packageName]) {
+    const dependencyScripts = dependencies.reduce((scriptsArray, dependency) => {
+        if (dependencyMap[dependency.packageName]) {
             const scripts = getScripts({
                 externalPackageEntry: dependencyMap[dependency.packageName],
                 version: dependency.version
@@ -27,5 +27,5 @@ export function resolveRequiredDependencyScripts({ dependencies, dependencyMap }
         return scriptsArray;
     }, []);
 
-    return scriptsArray;
+    return dependencyScripts;
 }
