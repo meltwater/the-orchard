@@ -16,6 +16,7 @@
     "pretest": "scripts/check-dependencies && eslint src/",
     "preversion": "scripts/preversion --commit-docs",
     "start": "npm run build && cd demo && npm ci && npm start",
+    "start:depcache": "npm run build && cd demo && npm ci && npm run depcache",
     "test": "scripts/test",
     "test:live": "nodemon -x 'scripts/test' -w js,json --watch src/",
     "update": "npx npm-check -uE",
