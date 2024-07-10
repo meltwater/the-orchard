@@ -27,5 +27,5 @@ export function resolveRequiredDependencyScripts({ dependencies, dependencyMap }
         return scriptsArray;
     }, []);
 
-    return scriptsArray.map(script => `"${script}"`);
+    return scriptsArray;
 }

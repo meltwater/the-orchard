@@ -4,4 +4,4 @@ export {
     DO_NOT_INJECT
 } from './cli-options';
 export { buildAppOutput } from './build-app-output';
-export { buildDepcacheOutput } from './build-app-output/build-depcache-output.js';
+export { buildDepcacheOutput } from './build-depcache-output';

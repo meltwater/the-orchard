@@ -1,17 +1,17 @@
 import ac from 'argument-contracts';
-import { checkForRequiredInitialization } from './check-for-required-initialization';
+import { checkForRequiredInitialization } from '../build-app-output/check-for-required-initialization';
 import { CliOptions, DO_NOT_INJECT } from '../cli-options';
 import fs from 'fs';
-import { getDependencyPackages } from './get-dependency-packages';
+import { getDependencyPackages } from '../build-app-output/get-dependency-packages';
 import { Logger } from '../logger';
 import path from 'path';
-import { readPackageDependencies } from './read-package-dependencies';
-import { rollupLatestMajorVersions } from './rollup-latest-major-versions';
-import { throwForConflictingMajorVersions } from './throw-for-conflicting-major-versions';
-import { throwIfZerothLevelDepNotHighestMajorVersion } from './throw-if-zeroth-level-dep-not-highest-major-version';
-import { buildDependencyArray } from './build-dependency-array';
-import { pareDownToKnownPackages } from './pare-down-to-known-packages';
-import { adjustOrderBasedOnChildDependencies } from './adjust-order-based-on-child-dependencies';
+import { readPackageDependencies } from '../build-app-output/read-package-dependencies';
+import { rollupLatestMajorVersions } from '../build-app-output/rollup-latest-major-versions';
+import { throwForConflictingMajorVersions } from '../build-app-output/throw-for-conflicting-major-versions';
+import { throwIfZerothLevelDepNotHighestMajorVersion } from '../build-app-output/throw-if-zeroth-level-dep-not-highest-major-version';
+import { buildDependencyArray } from '../build-app-output/build-dependency-array';
+import { pareDownToKnownPackages } from '../build-app-output/pare-down-to-known-packages';
+import { adjustOrderBasedOnChildDependencies } from '../build-app-output/adjust-order-based-on-child-dependencies';
 import { resolveRequiredDependencyScripts } from './resolve-required-dependency-scripts';
 
 const currentWorkingDirectory = process.cwd();
@@ -20,7 +20,7 @@ export async function buildDepcacheOutput(cliOptions) {
     ac.assertType(cliOptions, CliOptions, 'cliOptions');
 
     Logger.setLoggingLevel(cliOptions.logging);
-    Logger.debug(`buildAppOutput: cliOptions: ${JSON.stringify(cliOptions)}`);
+    Logger.debug(`buildDepcacheOutput: cliOptions: ${JSON.stringify(cliOptions)}`);
 
     const dependencies = readPackageDependencies(path.join(currentWorkingDirectory, cliOptions.pathToPackageJson));
     Logger.debug('dependencies', JSON.stringify(dependencies, null, 2));
@@ -59,7 +59,7 @@ export async function buildDepcacheOutput(cliOptions) {
     });
 
     const output = [
-        ...dependencyScripts.map(script => script.replace(/"/g, ''))
+        ...dependencyScripts
     ];
 
     if (cliOptions.injectFile && cliOptions.injectFile !== DO_NOT_INJECT) {
