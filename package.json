@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@meltwater/coerce": "0.4.0",
-    "@npmcli/arborist": "6.3.0",
+    "@npmcli/arborist": "7.5.4",
     "argument-contracts": "1.2.3",
     "colors": "1.4.0",
     "js-yaml": "4.1.0",
