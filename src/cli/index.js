@@ -2,6 +2,7 @@ import sywac from 'sywac';
 import { ORCHARD_INJECT_STRING } from '../constants';
 import { CliOptions } from '../cli-options';
 import { buildAppOutput } from '../build-app-output';
+import { buildDepcacheOutput } from '../build-depcache-output';
 import { Logger, LOGGING_LEVEL } from '../logger';
 
 Logger.setLoggingLevel(LOGGING_LEVEL.DEBUG);
@@ -46,11 +47,20 @@ sywac
         desc: 'How long to wait (in milliseconds) before retrying when openFileLimit has been reached',
         defaultValue: 2000
     })
+    .boolean('--outputDepcache', {
+        desc: 'Whether to output for use with systemjs depcache or not',
+        defaultValue: false
+    })
     .help('-h, --help')
     .parseAndExit()
     .then(options => ({ ...options, logging: loggingMap[options.logging] }))
     .then(options => new CliOptions(options))
-    .then(cliOptions => buildAppOutput(cliOptions))
+    .then(cliOptions => {
+        if(cliOptions.outputDepcache) {
+            return buildDepcacheOutput(cliOptions);
+        }
+        return buildAppOutput(cliOptions);
+    })
     .catch(error => {
         Logger.error(error);
         process.exitCode = 1;

@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "types": "./types/index.d.ts",
   "scripts": {
+    "depcache": "node ../cjs/cli.entry.js -o depcache.json --outputDepcache true",
     "start": "node ../cjs/cli.entry.js -i index.source.html -o index.html && ws --spa index.html"
   },
   "devDependencies": {

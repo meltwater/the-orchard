@@ -1,5 +1,6 @@
 # Project specific files
 demo/index.html
+demo/depcache.json
 
 # Local developer environment configuration
 .screen_layout

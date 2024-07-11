@@ -26,6 +26,22 @@ We recommend using a separate source file from your output file to allow for sou
 orchard -i ./sourceFile.html -o ./outputFile.html
 ```
 
+## Outputting depcache json format
+
+If you're building an application using systemjs import maps, and utilizing the [depcache](https://github.com/guybedford/import-maps-extensions#depcache) format, you can output the json file to be used by the `orchard` cli tool with the following command:
+
+```bash
+orchard -o depcache.json --outputDepcache true
+```
+
+This outputs a json file that can be loaded by your solution, and that file will look something like:
+```json
+[
+  "https://unpkg.com/npm@1.0.0/index.js",
+  "https://cdn.jsdelivr.net/npm/uhtml@3.0.1/es.js"
+]
+```
+
 ### Usage Implications
 
 In order to selectively serve modern code to modern browsers the script tags generated from the orchard utilize the `type="module"` attribute for es6+ builds, and es5 compatible code uses script tags with the `nomodule` and `defer` attributes.
